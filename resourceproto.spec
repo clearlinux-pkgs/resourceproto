@@ -4,7 +4,7 @@
 #
 Name     : resourceproto
 Version  : 1.2.0
-Release  : 3
+Release  : 4
 URL      : http://xorg.freedesktop.org/releases/individual/proto/resourceproto-1.2.0.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/proto/resourceproto-1.2.0.tar.bz2
 Summary  : Resource extension headers
