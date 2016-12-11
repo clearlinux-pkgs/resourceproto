@@ -4,13 +4,14 @@
 #
 Name     : resourceproto
 Version  : 1.2.0
-Release  : 6
+Release  : 7
 URL      : http://xorg.freedesktop.org/releases/individual/proto/resourceproto-1.2.0.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/proto/resourceproto-1.2.0.tar.bz2
 Summary  : Resource extension headers
 Group    : Development/Tools
 License  : MIT
 Requires: resourceproto-doc
+BuildRequires : pkgconfig(xorg-macros)
 
 %description
 X Resource Extension
@@ -20,6 +21,7 @@ about its usage of various resources.
 %package dev
 Summary: dev components for the resourceproto package.
 Group: Development
+Provides: resourceproto-devel
 
 %description dev
 dev components for the resourceproto package.
@@ -37,10 +39,15 @@ doc components for the resourceproto package.
 %setup -q -n resourceproto-1.2.0
 
 %build
+export LANG=C
 %configure --disable-static
-make V=1 %{?_smp_mflags}
+make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
@@ -53,7 +60,7 @@ rm -rf %{buildroot}
 %files dev
 %defattr(-,root,root,-)
 /usr/include/X11/extensions/XResproto.h
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/pkgconfig/resourceproto.pc
 
 %files doc
 %defattr(-,root,root,-)
